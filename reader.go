@@ -175,8 +175,11 @@ func decode(buf *bytes.Buffer, strict bool) (Playlist, ListType, error) {
 		}
 
 	}
-	if state.listType == MEDIA && state.tagWV {
-		media.WV = wv
+	if state.listType == MEDIA {
+		media.winsize = media.count
+		if state.tagWV {
+			media.WV = wv
+		}
 	}
 
 	if strict && !state.m3u {
